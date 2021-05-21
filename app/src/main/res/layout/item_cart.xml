@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_weight="10"
+    android:layout_margin="10dp"
+    android:orientation="horizontal"
+    android:layout_height="100dp">
+    <LinearLayout
+        android:layout_weight="3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <ImageView
+            android:src="@drawable/ic_launcher_background"
+            android:adjustViewBounds="true"
+            android:id="@+id/imgCart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:layout_weight="4"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txtvName"
+            android:text="Đèn ngủ trang trí nhiều mẫu"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"></TextView>
+
+        <TextView
+            android:id="@+id/txtvPrice"
+            android:text="49000 VND"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"></TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:weightSum="3"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnInc"
+            android:text="+"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"></Button>
+
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/txtvNumberPr"
+            android:text="3"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"></TextView>
+        <Button
+            android:id="@+id/btnDec"
+            android:text="-"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"></Button>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtvTotalOfEachPr"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center"
+        android:text="49000"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"></TextView>
+
+</LinearLayout>
