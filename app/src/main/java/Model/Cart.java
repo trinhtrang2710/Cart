@@ -27,7 +27,7 @@ public class Cart {
         this.id = id;
     }
 
-    public Bitmap getThumbnail() {
+    public String getThumbnail() {
         return thumbnail;
     }
 

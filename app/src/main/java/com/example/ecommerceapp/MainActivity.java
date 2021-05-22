@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public List<Product> lstProduct;
     public static ArrayList<Cart> lstCart;
     ProductAsyncTask asyncTask;
+    private String URL_PRODUCT = "https://mpr-cart-api.herokuapp.com/products";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mapping();
 
         asyncTask = new ProductAsyncTask(this, rvHome, lstProduct);
-        asyncTask.execute();
+        asyncTask.execute(URL_PRODUCT);
     }
 
     private void mapping() {
