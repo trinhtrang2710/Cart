@@ -51,7 +51,9 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageButton
+                        android:id="@+id/btnCart"
                         android:layout_width="40dp"
+                        android:onClick="goCart"
                         android:layout_height="40dp"
                         android:background="@null"
                         android:src="@drawable/bag"
