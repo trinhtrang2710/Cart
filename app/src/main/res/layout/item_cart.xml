@@ -50,7 +50,7 @@
 
         <ImageButton
             android:id="@+id/btnInc"
-            android:background="@drawable/cart_add"
+            android:background="@drawable/icon_plus"
             android:layout_weight="1"
             android:layout_margin="7dp"
             android:layout_width="wrap_content"
@@ -68,7 +68,7 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_margin="7dp"
-            android:background="@drawable/subtract_btn"
+            android:background="@drawable/icon_subtract"
             android:layout_height="0dp"></ImageButton>
     </LinearLayout>
 
