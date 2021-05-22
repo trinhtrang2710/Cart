@@ -86,8 +86,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
         public void bind(Product product) {
             txtvDesc.setText(product.getName());
-            txtvPrice.setText(product.getUnitPrice() + "VND");
-//            Toast.makeText(c, ""+ product.getName(), Toast.LENGTH_SHORT).show();
+            txtvPrice.setText(product.getUnitPrice() + " VND");
             ImageLoader task = new ImageLoader();
             task.execute(product.getThumbnail());
         }

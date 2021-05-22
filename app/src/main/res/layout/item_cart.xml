@@ -30,6 +30,7 @@
             android:id="@+id/txtvName"
             android:text="Đèn ngủ trang trí nhiều mẫu"
             android:layout_weight="1"
+            android:fontFamily="@font/montserrat_bold"
             android:layout_width="match_parent"
             android:layout_height="0dp"></TextView>
 
@@ -37,6 +38,7 @@
             android:id="@+id/txtvPrice"
             android:text="49000 VND"
             android:layout_weight="1"
+            android:fontFamily="@font/montserrat"
             android:layout_width="match_parent"
             android:layout_height="0dp"></TextView>
     </LinearLayout>
@@ -45,12 +47,14 @@
         android:weightSum="3"
         android:orientation="vertical"
         android:layout_weight="1"
+        android:background="#c4c4c4"
         android:layout_width="0dp"
         android:layout_height="match_parent">
 
         <ImageButton
             android:id="@+id/btnInc"
-            android:background="@drawable/icon_plus"
+            android:background="#333333"
+            android:src="@drawable/ic_baseline_remove_24"
             android:layout_weight="1"
             android:layout_margin="7dp"
             android:layout_width="wrap_content"
@@ -61,6 +65,7 @@
             android:id="@+id/txtvNumberPr"
             android:text="3"
             android:layout_weight="1"
+            android:fontFamily="@font/montserrat_bold"
             android:layout_width="match_parent"
             android:layout_height="0dp"></TextView>
         <ImageButton
@@ -68,7 +73,8 @@
             android:layout_weight="1"
             android:layout_width="wrap_content"
             android:layout_margin="7dp"
-            android:background="@drawable/icon_subtract"
+            android:background="#333333"
+            android:src="@drawable/ic_baseline_add_24"
             android:layout_height="0dp"></ImageButton>
     </LinearLayout>
 
@@ -77,6 +83,7 @@
         android:layout_marginLeft="20dp"
         android:layout_gravity="center"
         android:text="49000"
+        android:fontFamily="@font/montserrat_bold"
         android:layout_weight="2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"></TextView>

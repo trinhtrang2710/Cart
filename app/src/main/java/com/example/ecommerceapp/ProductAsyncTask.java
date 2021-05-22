@@ -76,7 +76,7 @@ public class ProductAsyncTask extends AsyncTask<String, Void, String> {
                     int productId = jsonProduct.getInt("id");
                     String productThumbnail = jsonProduct.getString("thumbnail");
                     String productName = jsonProduct.getString("name");
-                    double productPrice = jsonProduct.getDouble("unitPrice");
+                    int productPrice = jsonProduct.getInt("unitPrice");
                     Product product = new Product(productId, productThumbnail, productName, productPrice);
                     list.add(product);
                 }

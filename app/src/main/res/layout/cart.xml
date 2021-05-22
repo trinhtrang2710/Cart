@@ -5,20 +5,46 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.appcompat.widget.Toolbar
-        android:background="#84DAB6"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageButton
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:background="@drawable/icon_back"
-            />
+        android:layout_height="wrap_content"
+        android:background="#f5f6f8">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:background="@drawable/back_btn"
+                android:src="@drawable/ic_baseline_arrow_back_ios_new_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Summary"
+                android:textSize="25sp"
+                android:textColor="#333333"
+                android:fontFamily="@font/montserrat_bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
-        android:layout_weight="9"
+        android:layout_weight="8"
         android:layout_width="match_parent"
+        android:background="#f5f6f8"
         android:layout_height="0dp">
 
         <FrameLayout
@@ -40,42 +66,53 @@
             </ListView>
         </FrameLayout>
     </LinearLayout>
-    <LinearLayout
-        android:padding="5dp"
-        android:layout_marginBottom="2dp"
-        android:layout_weight="2"
-        android:background="#84DAB6"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-        <LinearLayout
-            android:weightSum="3"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <TextView
-                android:textColor="#111"
-                android:textSize="25sp"
-                android:text="Total :"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-            <TextView
-                android:id="@+id/txtvPrice"
-                android:textColor="#A56766"
-                android:textSize="25sp"
-                android:text="200 000 VND"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></TextView>
-            <ImageButton
-                android:id="@+id/btnCheckout"
-                android:background="@drawable/trolley"
-                android:layout_weight="1"
-                android:layout_width="20dp"
-                android:layout_height="35dp"></ImageButton>
-        </LinearLayout>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#f5f6f8">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="ORDER TOTAL:"
+            android:textColor="#333333"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+        <TextView
+            android:id="@+id/txtvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="200 000 VND"
+            android:textColor="#333333"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCheckout"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/back_btn"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Check out"
+        android:textAllCaps="false"
+        android:textColor="#F0F0F0"
+        android:textSize="22sp"></androidx.appcompat.widget.AppCompatButton>
 
 
 </LinearLayout>
