@@ -1,9 +1,15 @@
 package Adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.example.ecommerceapp.R;
 
 import java.util.ArrayList;
 
@@ -32,12 +38,39 @@ public class CartAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-    public class ViewHolder{
-
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        ViewHolder viewHolder = null;
+        if (convertView==null){
+            convertView = inflater.inflate(R.layout.item_cart, null);
+            viewHolder.txtvName = convertView.findViewById(R.id.txtvName);
+            viewHolder.txtvPrice = convertView.findViewById(R.id.txtvPrice);
+            viewHolder.txtvNumberPr = convertView.findViewById(R.id.txtvNumberPr);
+            viewHolder.txtvTotalOfEachPr = convertView.findViewById(R.id.txtvTotalOfEachPr);
+            viewHolder.imgCart = convertView.findViewById(R.id.imgCart);
+            viewHolder.btnInc = convertView.findViewById(R.id.btnInc);
+            viewHolder.btnDec = convertView.findViewById(R.id.btnDec);
+            convertView.setTag(viewHolder);
+        }else{
+            viewHolder = (ViewHolder) convertView.getTag();
+
+        }
+        Cart cart = cartArrayList.get(position);
+        viewHolder.txtvName.setText(cart.getName());
+        viewHolder.txtvPrice.setText((int) cart.getUnitPrice());
+        viewHolder.txtvNumberPr.setText(cart.getQuantity());
+        int total_price = (int) (cart.getQuantity() * cart.getUnitPrice());
+        viewHolder.txtvTotalOfEachPr.setText(total_price);
+        viewHolder.imgCart.setImageBitmap(cart.getThumbnail());
+
+        return convertView;
+    }
+
+    public static  class ViewHolder{
+        ImageView imgCart;
+        TextView txtvName,  txtvPrice, txtvNumberPr, txtvTotalOfEachPr;
+        Button btnInc, btnDec;
     }
 }

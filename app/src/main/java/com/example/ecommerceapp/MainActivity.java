@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView rvHome;
     public List<Product> lstProduct;
     public static ArrayList<Cart> lstCart;
-    private String URL_PRODUCT = "https://mpr-cart-api.herokuapp.com/products";
+    ProductAsyncTask asyncTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,11 +31,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mapping();
 
-//        ProductAdapter productAdapter = new ProductAdapter(this, lstProduct);
-//        rvHome.setLayoutManager(new GridLayoutManager(this, 2));
-//        rvHome.setAdapter(productAdapter);
-        ProductAsyncTask asyncTask = new ProductAsyncTask(this, rvHome, lstProduct);
-        asyncTask.execute(URL_PRODUCT);
+        asyncTask = new ProductAsyncTask(this, rvHome, lstProduct);
+        asyncTask.execute();
     }
 
     private void mapping() {

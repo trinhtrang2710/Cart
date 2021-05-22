@@ -1,5 +1,7 @@
 package Model;
 
+import android.graphics.Bitmap;
+
 public class Cart {
     private int id;
     private String thumbnail;
@@ -25,7 +27,7 @@ public class Cart {
         this.id = id;
     }
 
-    public String getThumbnail() {
+    public Bitmap getThumbnail() {
         return thumbnail;
     }
 
