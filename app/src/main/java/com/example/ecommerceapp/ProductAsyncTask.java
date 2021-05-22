@@ -84,6 +84,7 @@ public class ProductAsyncTask extends AsyncTask<String, Void, String> {
                 e.printStackTrace();
             }
         }
+
         adapter = new ProductAdapter(context, list);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));

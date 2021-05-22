@@ -10,6 +10,7 @@ import android.os.Bundle;
 
 //import android.widget.SearchView;
 import android.widget.EditText;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.util.ArrayList;

@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecommerceapp.MainActivity;
 import com.example.ecommerceapp.R;
 
 import java.io.IOException;
@@ -86,6 +87,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         public void bind(Product product) {
             txtvDesc.setText(product.getName());
             txtvPrice.setText(product.getUnitPrice() + "VND");
+//            Toast.makeText(c, ""+ product.getName(), Toast.LENGTH_SHORT).show();
             ImageLoader task = new ImageLoader();
             task.execute(product.getThumbnail());
         }
