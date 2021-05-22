@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EcommerceApp</string>
+    <string name="txtTotal">Total: </string>
 </resources>
