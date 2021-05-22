@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.SearchView;
+
+//import android.widget.SearchView;
+import android.widget.EditText;
 import android.widget.Toolbar;
 
 import java.util.ArrayList;
@@ -19,7 +21,7 @@ import Model.Product;
 
 public class MainActivity extends AppCompatActivity {
     Toolbar toolbarHome;
-    SearchView searchBar;
+    EditText searchBar;
     RecyclerView rvHome;
     public List<Product> lstProduct;
     public static ArrayList<Cart> lstCart;

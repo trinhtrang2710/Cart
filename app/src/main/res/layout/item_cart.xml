@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_weight="10"
     android:layout_margin="10dp"
+    android:background="@drawable/item_background"
     android:orientation="horizontal"
     android:layout_height="100dp">
     <LinearLayout
@@ -47,12 +48,13 @@
         android:layout_width="0dp"
         android:layout_height="match_parent">
 
-        <Button
+        <ImageButton
             android:id="@+id/btnInc"
-            android:text="+"
+            android:background="@drawable/cart_add"
             android:layout_weight="1"
+            android:layout_margin="7dp"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"></Button>
+            android:layout_height="0dp"></ImageButton>
 
         <TextView
             android:textAlignment="center"
@@ -61,12 +63,13 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"></TextView>
-        <Button
+        <ImageButton
             android:id="@+id/btnDec"
-            android:text="-"
             android:layout_weight="1"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"></Button>
+            android:layout_margin="7dp"
+            android:background="@drawable/subtract_btn"
+            android:layout_height="0dp"></ImageButton>
     </LinearLayout>
 
     <TextView
