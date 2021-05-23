@@ -68,9 +68,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         return lstProduct.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder{
         CardView cardViewP;
-        static ImageView imgProduct;
+        ImageView imgProduct;
         TextView txtvDesc, txtvPrice;
         ImageButton btnAdd;
 
@@ -91,7 +91,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             task.execute(product.getThumbnail());
         }
 
-        public static class ImageLoader extends AsyncTask<String, Void, Bitmap> {
+        public class ImageLoader extends AsyncTask<String, Void, Bitmap> {
             URL image_url;
             HttpURLConnection urlConnection;
 
