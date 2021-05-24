@@ -9,18 +9,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ecommerceapp.CartActivity;
 import com.example.ecommerceapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import Model.Cart;
+
+import Model.Product;
 
 public class CartAdapter extends BaseAdapter {
     Context context;
-    ArrayList<Cart> cartArrayList ;
+    int layout;
+    ArrayList<Product> cartArrayList ;
 
-    public CartAdapter(Context context, ArrayList<Cart> cartArrayList) {
+    public CartAdapter(Context context,int cart_item, ArrayList<Product> cartArrayList) {
         this.context = context;
+        this.layout = layout;
         this.cartArrayList = cartArrayList;
     }
 
@@ -57,11 +62,11 @@ public class CartAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
 
         }
-        Cart cart = cartArrayList.get(position);
+        Product cart = cartArrayList.get(position);
         viewHolder.txtvName.setText(cart.getName());
         viewHolder.txtvPrice.setText((int) cart.getUnitPrice());
         viewHolder.txtvNumberPr.setText(cart.getQuantity());
-        int total_price = (int) (cart.getQuantity() * cart.getUnitPrice());
+        int total_price = cart.getUnitPrice() * cart.getQuantity();
         viewHolder.txtvTotalOfEachPr.setText(total_price);
         //viewHolder.imgCart.setImageBitmap(cart.getThumbnail());
 

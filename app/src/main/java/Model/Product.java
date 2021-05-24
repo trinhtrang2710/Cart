@@ -5,9 +5,17 @@ public class Product {
     private String thumbnail;
     private String name;
     private int unitPrice;
+    private int quantity;
 
     public Product(){}
 
+    public Product(int id, String thumbnail, String name, int unitPrice, int quantity) {
+        this.id = id;
+        this.thumbnail = thumbnail;
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
     public Product(int id, String thumbnail, String name, int unitPrice) {
         this.id = id;
         this.thumbnail = thumbnail;
@@ -47,6 +55,14 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -54,6 +70,7 @@ public class Product {
                 ", thumbnail='" + thumbnail + '\'' +
                 ", name='" + name + '\'' +
                 ", unitPrice=" + unitPrice +
+                ", quantity=" + quantity +
                 '}';
     }
 }

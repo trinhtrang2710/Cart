@@ -1,6 +1,8 @@
 package Adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -17,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ecommerceapp.CartActivity;
 import com.example.ecommerceapp.MainActivity;
 import com.example.ecommerceapp.R;
 
@@ -27,12 +30,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
+import Database.DbHelper;
+import Database.DbSchema;
+import Database.ProductManager;
 import Model.Product;
+
+import static com.example.ecommerceapp.MainActivity.myDB;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context context;
     private List<Product> lstProduct;
-
+    ProductManager manager;
 
     public ProductAdapter(Context context, List<Product> lstProduct) {
         this.context = context;
@@ -52,15 +60,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
     public void onBindViewHolder(@NonNull ProductAdapter.MyViewHolder holder, int position) {
         Product product = lstProduct.get(position);
         holder.bind(product);
-//        holder.txtvDesc.setText(lstProduct.get(position).getName());
-//        holder.txtvPrice.setText((int) lstProduct.get(position).getUnitPrice());
-//        holder.btnAdd.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-
     }
 
     @Override
@@ -89,6 +88,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             txtvPrice.setText(product.getUnitPrice() + " VND");
             ImageLoader task = new ImageLoader();
             task.execute(product.getThumbnail());
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    manager = new ProductManager(context);
+                    manager.addProduct(product);
+                    Toast.makeText(context , "Add product ok" , Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
         public class ImageLoader extends AsyncTask<String, Void, Bitmap> {

@@ -1,25 +1,22 @@
 package com.example.ecommerceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 
-//import android.widget.SearchView;
+
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.ProductAdapter;
+import Database.DbHelper;
 import Model.Cart;
 import Model.Product;
 
@@ -28,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText searchBar;
     RecyclerView rvHome;
     ImageView btnCart;
+    public static DbHelper myDB;
     public List<Product> lstProduct;
     public static ArrayList<Cart> lstCart;
     ProductAsyncTask asyncTask;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         toolbarHome = findViewById(R.id.toolBarHome);
         searchBar = findViewById(R.id.searchBar);
         rvHome = findViewById(R.id.rvHome);
-        btnCart = findViewById(R.id.btnAdd);
+        btnCart = findViewById(R.id.btnCart);
         if (lstCart != null){
             lstCart = new ArrayList<>();
         }
