@@ -15,7 +15,7 @@ import java.util.List;
 
 import Adapter.CartAdapter;
 import Database.ProductManager;
-import Model.Cart;
+
 import Model.Product;
 
 public class CartActivity extends AppCompatActivity implements View.OnClickListener {

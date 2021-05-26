@@ -66,8 +66,8 @@ public class CartAdapter extends BaseAdapter {
         viewHolder.txtvName.setText(cart.getName());
         viewHolder.txtvPrice.setText((int) cart.getUnitPrice());
         viewHolder.txtvNumberPr.setText(cart.getQuantity());
-        int total_price = cart.getUnitPrice() * cart.getQuantity();
-        viewHolder.txtvTotalOfEachPr.setText(total_price);
+        double total_price = cart.getUnitPrice() * cart.getQuantity();
+        viewHolder.txtvTotalOfEachPr.setText((int) total_price);
         //viewHolder.imgCart.setImageBitmap(cart.getThumbnail());
 
         return convertView;

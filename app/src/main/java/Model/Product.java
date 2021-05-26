@@ -9,6 +9,13 @@ public class Product {
 
     public Product(){}
 
+    public Product(String thumbnail, String name, int unitPrice, int quantity) {
+        this.id = id;
+        this.thumbnail = thumbnail;
+        this.name = name;
+        this.unitPrice = unitPrice;
+        this.quantity = quantity;
+    }
     public Product(int id, String thumbnail, String name, int unitPrice, int quantity) {
         this.id = id;
         this.thumbnail = thumbnail;
@@ -22,6 +29,7 @@ public class Product {
         this.name = name;
         this.unitPrice = unitPrice;
     }
+
 
     public int getId() {
         return id;
@@ -61,6 +69,10 @@ public class Product {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public  void increaseQuantity(){
+        this.quantity++;
     }
 
     @Override

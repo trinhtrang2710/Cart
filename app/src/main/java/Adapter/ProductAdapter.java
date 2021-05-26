@@ -53,7 +53,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         View view;
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         view = layoutInflater.inflate(R.layout.item_product, parent, false);
-        return new MyViewHolder(view);
+        return new MyViewHolder(view, context) ;
     }
 
     @Override
@@ -72,15 +72,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         ImageView imgProduct;
         TextView txtvDesc, txtvPrice;
         ImageButton btnAdd;
+        private Context context;
 
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView, Context context) {
             super(itemView);
             cardViewP = itemView.findViewById(R.id.cardViewP);
             imgProduct = itemView.findViewById(R.id.imgProduct);
             txtvDesc = itemView.findViewById(R.id.txtvDesc);
             txtvPrice = itemView.findViewById(R.id.txtvPrice);
             btnAdd = itemView.findViewById(R.id.btnAdd);
+
+            this.context = context;
         }
 
         public void bind(Product product) {
@@ -91,7 +94,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             btnAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    manager = new ProductManager(context);
+                    manager = ProductManager.getInstance(context);
+                    
                     manager.addProduct(product);
                     Toast.makeText(context , "Add product ok" , Toast.LENGTH_LONG).show();
                 }

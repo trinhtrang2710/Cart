@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Database.DbHelper;
-import Model.Cart;
+
 import Model.Product;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView btnCart;
     public static DbHelper myDB;
     public List<Product> lstProduct;
-    public static ArrayList<Cart> lstCart;
+    public static ArrayList<Product> lstCart;
     ProductAsyncTask asyncTask;
     private String URL_PRODUCT = "https://mpr-cart-api.herokuapp.com/products";
 
