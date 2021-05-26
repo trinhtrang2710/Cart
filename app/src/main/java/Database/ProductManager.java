@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import android.database.sqlite.SQLiteStatement;
+import android.net.Uri;
 
 import java.util.List;
 
@@ -17,6 +18,13 @@ public class ProductManager  {
 
     private static final String INSERT_STMT =
             "INSERT INTO " + DbSchema.ProductTable.NAME + "(id, name, thumbnail, unit_price, quantity) VALUES (?, ?, ?, ?, ?)";
+
+    private static final String UPDATE_QUANTITY = "UPDATE " + DbSchema.ProductTable.NAME +
+                                                    " SET " + DbSchema.ProductTable.Cols.QUANTITY +
+                                                    " = " + "( " + DbSchema.ProductTable.Cols.QUANTITY + " +1" + " )" +
+                                                    "WHERE " + DbSchema.ProductTable.Cols.ID + " = " + " ? ";
+
+
 
     private DbHelper dbHelper;
     private SQLiteDatabase db;
@@ -50,6 +58,14 @@ public class ProductManager  {
             return false;
         }
     }
+
+    public boolean updateQuantity(Product product){
+        SQLiteStatement stmq = db.compileStatement(UPDATE_QUANTITY);
+
+            return true;
+
+    }
+
 
     public Product findProductById(long productId){
         String sql = "SELECT * FROM " + DbSchema.ProductTable.NAME + " WHERE "+  DbSchema.ProductTable.Cols.ID+ " = ?";
