@@ -1,7 +1,7 @@
 package Model;
 
 public class Product {
-    private int id;
+    private long id;
     private String thumbnail;
     private String name;
     private int unitPrice;
@@ -16,7 +16,7 @@ public class Product {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
     }
-    public Product(int id, String thumbnail, String name, int unitPrice, int quantity) {
+    public Product(long id, String thumbnail, String name, int unitPrice, int quantity) {
         this.id = id;
         this.thumbnail = thumbnail;
         this.name = name;
@@ -31,7 +31,7 @@ public class Product {
     }
 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -71,8 +71,12 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public  void increaseQuantity(){
-        this.quantity++;
+    public int increaseQuantity(){
+        return quantity++;
+    }
+
+    public double totalPrice(){
+        return  this.unitPrice*this.quantity;
     }
 
     @Override

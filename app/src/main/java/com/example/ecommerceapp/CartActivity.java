@@ -6,9 +6,12 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +23,9 @@ import Model.Product;
 
 public class CartActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton btnBack;
-    ListView lvCart;
+    RecyclerView rvCart;
     CartAdapter adapter;
-    List<Product> lstCart = new ArrayList<>();
+    List<Product> lstCart;
     TextView txtvPrice;
     ProductManager manager;
 
@@ -31,18 +34,26 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cart);
         mapping();
+        manager = ProductManager.getInstance(this);
+        lstCart =manager.getAllData();
+        for (int i = 0; i < lstCart.size(); i++){
+            Product p = lstCart.get(i);
+            String name = p.getName();
+            int price = p.getUnitPrice();
+            Toast.makeText(this, "" + name + price, Toast.LENGTH_SHORT).show();
+        }
+
         btnBack.setOnClickListener(this);
-        adapter = new CartAdapter(CartActivity.this, R.layout.item_cart, (ArrayList<Product>) lstCart);
-        adapter.notifyDataSetChanged();
-        getData();
+        rvCart.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new CartAdapter(lstCart, this);
+        rvCart.setAdapter(adapter);
+
     }
 
-    private void getData() {
-        lstCart = manager.getAllData();
-    }
+
 
     private void mapping() {
-        lvCart = findViewById(R.id.lvCart);
+        rvCart = findViewById(R.id.rvCart);
         txtvPrice = findViewById(R.id.txtvPrice);
         btnBack = findViewById(R.id.btnBack);
     }

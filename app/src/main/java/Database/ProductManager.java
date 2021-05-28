@@ -40,11 +40,10 @@ public class ProductManager  {
         SQLiteStatement stm = db.compileStatement(INSERT_STMT);
 
         stm.bindLong(1, product.getId());
-
         stm.bindString(2, product.getName());
         stm.bindString(3, product.getThumbnail());
         stm.bindDouble(4, product.getUnitPrice());
-        stm.bindString(5, product.getQuantity() +"");
+        stm.bindString(5, String.valueOf(product.getQuantity() +1));
 
         long id = stm.executeInsert();
         if(id > 0){
@@ -54,9 +53,24 @@ public class ProductManager  {
         }
     }
 
-    public Product findProductById(long productId){
+    public boolean updateQuantity(Product product){
+        ContentValues cv = new ContentValues();
+        cv.put(DbSchema.ProductTable.Cols.ID, product.getId());
+        cv.put(DbSchema.ProductTable.Cols.NAME, product.getName());
+        cv.put(DbSchema.ProductTable.Cols.THUMBNAIL, product.getThumbnail());
+        cv.put(DbSchema.ProductTable.Cols.UNIT_PRICE, product.getUnitPrice());
+        cv.put(DbSchema.ProductTable.Cols.QUANTITY, product.getQuantity() +1);
+
+        int result = db.update(DbSchema.ProductTable.NAME, cv,DbSchema.ProductTable.Cols.ID + "= ?", new String[]{product.getId()+""});
+        return result > 0;
+
+
+    }
+
+
+    public Product findProductById(long id){
         String sql = "SELECT * FROM " + DbSchema.ProductTable.NAME + " WHERE "+  DbSchema.ProductTable.Cols.ID+ " = ?";
-        Cursor cursor = db.rawQuery(sql, new String[]{productId+""});
+        Cursor cursor = db.rawQuery(sql, new String[]{id+""});
 
         ProductCursorWrapper cursorWrapper = new ProductCursorWrapper(cursor);
 

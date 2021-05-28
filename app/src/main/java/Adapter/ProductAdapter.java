@@ -21,8 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ecommerceapp.CartActivity;
-import com.example.ecommerceapp.MainActivity;
 import com.example.ecommerceapp.R;
 
 import java.io.IOException;
@@ -32,12 +30,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import Database.DbHelper;
-import Database.DbSchema;
 import Database.ProductManager;
 import Model.Product;
 
-import static com.example.ecommerceapp.MainActivity.myDB;
+
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
     private Context context;
@@ -94,22 +90,29 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             ImageLoader task = new ImageLoader();
             task.execute(product.getThumbnail());
 
+
             btnAdd.setOnClickListener(new View.OnClickListener() {
-                int count = 0;
                 @Override
                 public void onClick(View v) {
-                    count++;
-                    if(count <= 1){
-                        manager = ProductManager.getInstance(context);
-
-                        manager.addProduct(product);
-                        Toast.makeText(context , "Add product ok " , Toast.LENGTH_LONG).show();
+                    manager = ProductManager.getInstance(context);
+                    boolean isAdded = false;
+                    boolean isUpdated = false;
+                    Product productDb = manager.findProductById(product.getId());
+                    if(productDb == null){
+                        product.increaseQuantity();
+                        isAdded = manager.addProduct(product);
                     }else{
-
-
+                        productDb.increaseQuantity();
+                        isUpdated = manager.updateQuantity(productDb);
                     }
 
+                    if(isAdded || isUpdated){
+                        Toast.makeText(context, "Add product successful", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(context, "Add fail", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
             });
         }
 

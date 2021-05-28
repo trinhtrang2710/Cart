@@ -59,11 +59,11 @@
                 android:layout_height="wrap_content">
             </TextView>
 
-            <ListView
-                android:id="@+id/lvCart"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            </ListView>
+            </androidx.recyclerview.widget.RecyclerView>
         </FrameLayout>
     </LinearLayout>
 
