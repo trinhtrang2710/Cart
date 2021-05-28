@@ -93,7 +93,7 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             txtvName.setText(product.getName());
             txtvNumberPr.setText(product.getQuantity()+"");
             txtvPrice.setText(product.getUnitPrice()+" VND");
-            txtvTotalOfEachPr.setText(product.totalPrice() + "VND");
+            txtvTotalOfEachPr.setText(product.totalPrice() + "\nVND");
 
             btnInc.setOnClickListener(new View.OnClickListener() {
                 @Override

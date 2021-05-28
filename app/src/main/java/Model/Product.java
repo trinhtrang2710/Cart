@@ -75,7 +75,7 @@ public class Product {
         return quantity++;
     }
 
-    public double totalPrice(){
+    public int totalPrice(){
         return  this.unitPrice*this.quantity;
     }
 
