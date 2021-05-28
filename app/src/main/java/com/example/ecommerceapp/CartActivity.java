@@ -36,12 +36,12 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         mapping();
         manager = ProductManager.getInstance(this);
         lstCart =manager.getAllData();
-        for (int i = 0; i < lstCart.size(); i++){
-            Product p = lstCart.get(i);
-            String name = p.getName();
-            int price = p.getUnitPrice();
-            Toast.makeText(this, "" + name + price, Toast.LENGTH_SHORT).show();
-        }
+//        for (int i = 0; i < lstCart.size(); i++){
+//            Product p = lstCart.get(i);
+//            String name = p.getName();
+//            int price = p.getUnitPrice();
+//            Toast.makeText(this, "" + name + price, Toast.LENGTH_SHORT).show();
+//        }
 
         btnBack.setOnClickListener(this);
         rvCart.setLayoutManager(new LinearLayoutManager(this));
