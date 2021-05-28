@@ -1,7 +1,9 @@
 package Adapter;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -91,13 +93,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             txtvPrice.setText(product.getUnitPrice() + " VND");
             ImageLoader task = new ImageLoader();
             task.execute(product.getThumbnail());
+
             btnAdd.setOnClickListener(new View.OnClickListener() {
+                int count = 0;
                 @Override
                 public void onClick(View v) {
-                    manager = ProductManager.getInstance(context);
-                    
-                    manager.addProduct(product);
-                    Toast.makeText(context , "Add product ok" , Toast.LENGTH_LONG).show();
+                    count++;
+                    if(count <= 1){
+                        manager = ProductManager.getInstance(context);
+
+                        manager.addProduct(product);
+                        Toast.makeText(context , "Add product ok " , Toast.LENGTH_LONG).show();
+                    }else{
+
+
+                    }
+
                 }
             });
         }

@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.ecommerceapp.MainActivity;
+
 import Model.Product;
 
 public class DbHelper extends SQLiteOpenHelper {
@@ -33,6 +35,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 DbSchema.ProductTable.Cols.QUANTITY + " INTEGER" + ")";
 
         db.execSQL(CREATE_TABLE);
+       // Toast.makeText(c, "delete ok" , Toast.LENGTH_LONG).show();
         Log.d(TAG, "Database tables created");
 
     }
