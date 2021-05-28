@@ -19,7 +19,7 @@ public class ProductCursorWrapper extends CursorWrapper {
     }
 
     public Product getProduct(){
-        int id =  getInt(getColumnIndex(DbSchema.ProductTable.Cols.ID));
+        long id =  getLong(getColumnIndex(DbSchema.ProductTable.Cols.ID));
         String name =  getString(getColumnIndex(DbSchema.ProductTable.Cols.NAME));
         String thumbnail =  getString(getColumnIndex(DbSchema.ProductTable.Cols.THUMBNAIL));
 

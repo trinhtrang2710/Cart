@@ -95,17 +95,16 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                 int count =0;
                 @Override
                 public void onClick(View v) {
+                    manager = ProductManager.getInstance(context);
                     count ++;
                     if (count <=1){
 
-
-                    manager = ProductManager.getInstance(context);
-
                     manager.addProduct(product);
                     Toast.makeText(context , "Add product ok" , Toast.LENGTH_LONG).show();
-                } else {
+                } else if (count >1){
                         manager = ProductManager.getInstance(context);
 
+                        product.increaseQuantity();
                         manager.updateQuantity(product);
                         Toast.makeText(context , "Update ok" , Toast.LENGTH_LONG).show();
                     }
