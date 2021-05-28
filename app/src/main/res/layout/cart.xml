@@ -86,7 +86,7 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <TextView
-            android:id="@+id/txtvPrice"
+            android:id="@+id/txtTotalPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"

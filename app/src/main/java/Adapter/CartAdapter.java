@@ -121,36 +121,31 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
                 @Override
                 public void onClick(View v) {
-//                    if(product.getQuantity() ==  1){
-//                        new AlertDialog.Builder(context)
-//                                .setTitle("Delete product")
-//                                .setMessage("Do you want to remove this product from cart?")
-//                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-//                                    @Override
-//                                    public void onClick(DialogInterface dialog, int which) {
-//
-//
-//                                        boolean isDeleted = productManager.deleteProduct(product.getId());
-//                                        if(isDeleted){
-//                                            cartLines.remove(product);
-//                                            cartActivity.totalPrice.setText(productManager.getTotalPrice()+" VND");
-//                                            Toast.makeText(context, "Deleted", Toast.LENGTH_SHORT).show();
-//                                        }else{
-//                                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        notifyDataSetChanged();
-//                                    }
-//                                })
-//                                .setNegativeButton("No", null)
-//                                .show();
-//
-//
-//                    }else{
-//                        product.decreseQuantity();
-//                        productManager.updateProduct(product);
-//                        cartActivity.totalPrice.setText(productManager.getTotalPrice()+" VND");
-//                        notifyDataSetChanged();
-//                    }
+                    if(product.getQuantity() ==  1){
+                        new AlertDialog.Builder(context)
+                                .setTitle("Delete product")
+                                .setMessage("Do you want to remove this product from cart?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+
+                                        boolean isDeleted = productManager.delete(product.getId());
+                                        if(isDeleted){
+
+                                        }else{
+                                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
+                                        }
+                                        notifyDataSetChanged();
+                                    }
+                                })
+                                .setNegativeButton("No", null)
+                                .show();
+
+
+                    }else{
+
+                    }
 
 
                 }
