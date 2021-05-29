@@ -42,6 +42,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 //            int price = p.getUnitPrice();
 //            Toast.makeText(this, "" + name + price, Toast.LENGTH_SHORT).show();
 //        }
+
         int sumP = 0;
         for (int i=0; i<lstCart.size(); i++){
             Product pd = lstCart.get(i);
@@ -50,6 +51,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         }
         String s = String.valueOf(sumP);
         txtTotalPrice.setText(s + " VND");
+
         btnBack.setOnClickListener(this);
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CartAdapter(lstCart, this);

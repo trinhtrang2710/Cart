@@ -37,6 +37,7 @@ import Model.Product;
 public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     List<Product> cartLines;
     private CartActivity cartActivity;
+    ProductManager productManager;
 
     public CartAdapter(List<Product> cartLines, CartActivity cartActivity){
         this.cartLines = cartLines;
@@ -103,7 +104,7 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             btnInc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ProductManager productManager = ProductManager.getInstance(context);
+                   productManager = ProductManager.getInstance(context);
 
                     boolean isUpdated = false;
                     product.increaseQuantity();
@@ -122,37 +123,33 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             });
 
             btnDec.setOnClickListener(new View.OnClickListener() {
-                ProductManager productManager = ProductManager.getInstance(context);
-
                 @Override
                 public void onClick(View v) {
                     if(product.getQuantity() ==  1){
-                        new AlertDialog.Builder(context)
-                                .setTitle("Delete product")
-                                .setMessage("Do you want to remove this product from cart?")
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-
-
-                                        boolean isDeleted = productManager.delete(product.getId());
-                                        if(isDeleted){
-
-                                        }else{
-                                            Toast.makeText(context, "Fail", Toast.LENGTH_SHORT).show();
-                                        }
-                                        notifyDataSetChanged();
-                                    }
-                                })
-                                .setNegativeButton("No", null)
-                                .show();
-
-
+                        dialogClick(getAdapterPosition());
                     }else{
-
+                    productManager = ProductManager.getInstance(context);
+                    Product pr = productManager.findProductById(product.getId());
+                    pr.decreaseQuantity();
+                    notifyDataSetChanged();
                     }
+                }
+            });
 
-
+            btnInc.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    productManager = ProductManager.getInstance(context);
+                    boolean isAdded = false;
+                    boolean isUpdated = false;
+                    Product productDb = productManager.findProductById(product.getId());
+                    if(productDb == null){
+                        product.increaseQuantity();
+                        isAdded = productManager.addProduct(product);
+                    }else{
+                        productDb.increaseQuantity();
+                        isUpdated = productManager.updateQuantity(productDb);
+                    }
                 }
             });
 
@@ -160,6 +157,34 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             task.execute(product.getThumbnail());
 
         }
+            public void dialogClick(int position) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.setTitle("Confirm");
+                alert.setMessage("Do you want to delete this product ?");
+                alert.setIcon(R.drawable.ic_baseline_delete_outline_24);
+
+
+                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    boolean delete_pr = false;
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Product pr = cartLines.get(position);
+                        long id = pr.getId();
+                        cartLines.remove(position);
+                        delete_pr = productManager.delete(id);
+
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Delete Successfull", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alert.show();
+            }
 
         public class ThumbnailLoader extends AsyncTask<String, Void, Bitmap> {
             URL image_url;
@@ -194,6 +219,7 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     }
 
    
+
 
 
 }

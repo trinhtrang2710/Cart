@@ -74,6 +74,9 @@ public class Product {
     public int increaseQuantity(){
         return quantity++;
     }
+    public int decreaseQuantity(){
+        return quantity--;
+    }
 
     public int totalPrice(){
         return  this.unitPrice*this.quantity;
