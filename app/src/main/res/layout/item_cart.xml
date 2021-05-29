@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_weight="10"
-    android:layout_margin="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
     android:background="@drawable/item_background"
+    app:layout_constraintCircleRadius="20dp"
     android:orientation="horizontal"
     android:layout_height="100dp">
     <LinearLayout
@@ -21,7 +24,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:weightSum="2"
+        android:weightSum="3"
         android:orientation="vertical"
         android:layout_weight="4"
         android:layout_width="0dp"
@@ -29,7 +32,7 @@
         <TextView
             android:id="@+id/txtvName"
             android:text="Đèn ngủ trang trí nhiều mẫu"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:fontFamily="@font/montserrat_bold"
             android:layout_width="match_parent"
             android:layout_height="0dp"></TextView>
@@ -80,12 +83,13 @@
 
     <TextView
         android:id="@+id/txtvTotalOfEachPr"
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="center"
-        android:text="49000"
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_weight="2"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"></TextView>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
+        android:layout_weight="2"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="49000"
+        android:textSize="14sp"></TextView>
 
 </LinearLayout>

@@ -26,7 +26,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rvCart;
     CartAdapter adapter;
     List<Product> lstCart;
-    TextView txtvPrice;
+    TextView txtvPrice, txtTotalPrice;
     ProductManager manager;
 
     @Override
@@ -43,6 +43,15 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 //            Toast.makeText(this, "" + name + price, Toast.LENGTH_SHORT).show();
 //        }
 
+        int sumP = 0;
+        for (int i=0; i<lstCart.size(); i++){
+            Product pd = lstCart.get(i);
+            double price = pd.totalPrice();
+            sumP += price;
+        }
+        String s = String.valueOf(sumP);
+        txtTotalPrice.setText(s + " VND");
+
         btnBack.setOnClickListener(this);
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         adapter = new CartAdapter(lstCart, this);
@@ -52,10 +61,13 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
     private void mapping() {
         rvCart = findViewById(R.id.rvCart);
         txtvPrice = findViewById(R.id.txtvPrice);
         btnBack = findViewById(R.id.btnBack);
+        txtTotalPrice = findViewById(R.id.txtTotalPrice);
+
     }
 
 

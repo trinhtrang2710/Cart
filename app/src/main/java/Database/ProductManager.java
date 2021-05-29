@@ -84,6 +84,13 @@ public class ProductManager  {
         return cursorWrapper.getProducts();
     }
 
+    public boolean delete (long id){
+        int result = db.delete(DbSchema.ProductTable.NAME,
+                DbSchema.ProductTable.Cols.ID + "= ?", new String[]{id+""} );
+
+        return result> 0;
+    }
+
 
 
 }
