@@ -26,7 +26,7 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
     RecyclerView rvCart;
     CartAdapter adapter;
     List<Product> lstCart;
-    TextView txtvPrice, txtTotalPrice;
+    public TextView txtvPrice, txtTotalPrice, txtvEmpty;
     ProductManager manager;
 
     @Override
@@ -36,21 +36,11 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
         mapping();
         manager = ProductManager.getInstance(this);
         lstCart =manager.getAllData();
-//        for (int i = 0; i < lstCart.size(); i++){
-//            Product p = lstCart.get(i);
-//            String name = p.getName();
-//            int price = p.getUnitPrice();
-//            Toast.makeText(this, "" + name + price, Toast.LENGTH_SHORT).show();
-//        }
+        int numberPr = lstCart.size();
+        check(numberPr);
 
-        int sumP = 0;
-        for (int i=0; i<lstCart.size(); i++){
-            Product pd = lstCart.get(i);
-            double price = pd.totalPrice();
-            sumP += price;
-        }
-        String s = String.valueOf(sumP);
-        txtTotalPrice.setText(s + " VND");
+        txtTotalPrice.setText(manager.countPrice() + " VND");
+
 
         btnBack.setOnClickListener(this);
         rvCart.setLayoutManager(new LinearLayoutManager(this));
@@ -63,11 +53,20 @@ public class CartActivity extends AppCompatActivity implements View.OnClickListe
 
 
     private void mapping() {
+        txtvEmpty = findViewById(R.id.txtvEmpty);
         rvCart = findViewById(R.id.rvCart);
         txtvPrice = findViewById(R.id.txtvPrice);
         btnBack = findViewById(R.id.btnBack);
         txtTotalPrice = findViewById(R.id.txtTotalPrice);
 
+    }
+
+    private void check(int number){
+        if (number == 0){
+            txtvEmpty.setVisibility(View.VISIBLE);
+        }else {
+            txtvEmpty.setVisibility(View.INVISIBLE);
+        }
     }
 
 

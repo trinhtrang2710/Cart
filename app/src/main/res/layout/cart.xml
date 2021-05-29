@@ -51,7 +51,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <TextView
-                android:id="@+id/noti"
+                android:visibility="gone"
+                android:id="@+id/txtvEmpty"
                 android:layout_gravity="center"
                 android:textSize="25sp"
                 android:text="Your cart is empty"

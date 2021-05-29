@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 import Database.ProductManager;
@@ -65,6 +66,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         return lstProduct.size();
     }
 
+
     public class MyViewHolder extends RecyclerView.ViewHolder{
         CardView cardViewP;
         ImageView imgProduct;
@@ -99,8 +101,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     boolean isUpdated = false;
                     Product productDb = manager.findProductById(product.getId());
                     if(productDb == null){
+                        product.increaseQuantity();
                         isAdded = manager.addProduct(product);
                     }else{
+                        productDb.increaseQuantity();
                         isUpdated = manager.updateQuantity(productDb);
                     }
 

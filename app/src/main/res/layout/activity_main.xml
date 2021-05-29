@@ -53,7 +53,6 @@
                     <ImageButton
                         android:id="@+id/btnCart"
                         android:layout_width="40dp"
-                        android:onClick="goCart"
                         android:layout_height="40dp"
                         android:background="@null"
                         android:src="@drawable/cart"
@@ -92,7 +91,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/btnSearch"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:background="@drawable/search_icon_bg"

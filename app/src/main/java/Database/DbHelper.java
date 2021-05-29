@@ -29,8 +29,8 @@ public class DbHelper extends SQLiteOpenHelper {
         String DROP_TABLE = "DROP TABLE " + DbSchema.ProductTable.NAME;
         String CREATE_TABLE = "CREATE TABLE " + DbSchema.ProductTable.NAME + "(" +
                 DbSchema.ProductTable.Cols.ID + " INTEGER PRIMARY KEY ," +
-                DbSchema.ProductTable.Cols.NAME + " TEXT, "+
                 DbSchema.ProductTable.Cols.THUMBNAIL +" TEXT," +
+                DbSchema.ProductTable.Cols.NAME + " TEXT, "+
                 DbSchema.ProductTable.Cols.UNIT_PRICE + " DOUBLE," +
                 DbSchema.ProductTable.Cols.QUANTITY + " INTEGER" + ")";
 

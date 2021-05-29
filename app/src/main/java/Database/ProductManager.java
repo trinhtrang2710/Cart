@@ -39,10 +39,11 @@ public class ProductManager  {
         SQLiteStatement stm = db.compileStatement(INSERT_STMT);
 
         stm.bindLong(1, product.getId());
-        stm.bindString(2, product.getName());
+
         stm.bindString(3, product.getThumbnail());
+        stm.bindString(2, product.getName());
         stm.bindDouble(4, product.getUnitPrice());
-        stm.bindString(5, String.valueOf(product.getQuantity() +1));
+        stm.bindString(5, String.valueOf(product.getQuantity()));
 
         long id = stm.executeInsert();
         if(id > 0){
@@ -58,7 +59,7 @@ public class ProductManager  {
         cv.put(DbSchema.ProductTable.Cols.NAME, product.getName());
         cv.put(DbSchema.ProductTable.Cols.THUMBNAIL, product.getThumbnail());
         cv.put(DbSchema.ProductTable.Cols.UNIT_PRICE, product.getUnitPrice());
-        cv.put(DbSchema.ProductTable.Cols.QUANTITY, product.getQuantity() +1);
+        cv.put(DbSchema.ProductTable.Cols.QUANTITY, product.getQuantity());
 
         int result = db.update(DbSchema.ProductTable.NAME, cv,DbSchema.ProductTable.Cols.ID + "= ?", new String[]{product.getId()+""});
         return result > 0;
@@ -88,6 +89,19 @@ public class ProductManager  {
                 DbSchema.ProductTable.Cols.ID + "= ?", new String[]{id+""} );
 
         return result> 0;
+    }
+
+    public double countPrice(){
+        String sql = "SELECT SUM("+ DbSchema.ProductTable.Cols.QUANTITY +" * "  +DbSchema.ProductTable.Cols.UNIT_PRICE+  ") AS total FROM " + DbSchema.ProductTable.NAME;
+        Cursor cursor =db.rawQuery(sql, null);
+
+        double total = 0;
+        cursor.moveToFirst();
+        if(!cursor.isAfterLast()){
+            total = cursor.getDouble(0);
+        }
+        total = cursor.getDouble(0);
+        return total;
     }
 
 

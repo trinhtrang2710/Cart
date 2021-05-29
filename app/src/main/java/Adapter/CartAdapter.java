@@ -48,10 +48,8 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     @NonNull
     @Override
     public CartHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //Activity to display
         Context context = parent.getContext();
 
-        //XML to java Object
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View itemView = inflater.inflate(R.layout.item_cart, parent, false);
@@ -70,11 +68,6 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
     @Override
     public int getItemCount() {
         return cartLines.size();
-    }
-
-    public void filterList(ArrayList<Product> filteredList) {
-        cartLines = filteredList;
-        notifyDataSetChanged();
     }
 
 
@@ -101,38 +94,46 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
             txtvPrice.setText(product.getUnitPrice()+" VND");
             txtvTotalOfEachPr.setText(product.totalPrice() + "\nVND");
 
-            btnInc.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                   productManager = ProductManager.getInstance(context);
-
-                    boolean isUpdated = false;
-                    product.increaseQuantity();
-                    isUpdated = productManager.updateQuantity(product);
-
-
-                    if( isUpdated){
-                        Toast.makeText(context, "+1", Toast.LENGTH_SHORT).show();
-                        //cartActivity.t.setText(productManager.getTotalPrice()+" VND");
-                    }else{
-                        Toast.makeText(context, "Add fail", Toast.LENGTH_SHORT).show();
-                    }
-                    notifyDataSetChanged();
-                }
-
-            });
-
             btnDec.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(product.getQuantity() ==  1){
-                        dialogClick(getAdapterPosition());
-                    }else{
                     productManager = ProductManager.getInstance(context);
-                    Product pr = productManager.findProductById(product.getId());
-                    pr.decreaseQuantity();
-                    notifyDataSetChanged();
+                    if(product.getQuantity() ==  1){
+                        int id = (int) product.getId();
+                        dialogClick(id);
+                        AlertDialog.Builder alert = new AlertDialog.Builder(cartActivity);
+                        alert.setTitle("Confirm");
+                        alert.setMessage("Do you want to delete this product ?");
+                        alert.setIcon(R.drawable.ic_baseline_delete_outline_24);
+
+
+                        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            boolean delete_pr = false;
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                cartLines.remove(product);
+                                delete_pr = productManager.delete(id);
+                                Toast.makeText(cartActivity, "Delete Successfull", Toast.LENGTH_SHORT).show();
+                                notifyDataSetChanged();
+                                cartActivity.txtTotalPrice.setText(productManager.countPrice() + "VND");
+                            }
+                        });
+                        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        AlertDialog dialog = alert.create();
+                        dialog.show();
+                    }else{
+                        boolean isUpdated = false;
+                        product.decreaseQuantity();
+                        isUpdated = productManager.updateQuantity(product);
+                        cartActivity.txtTotalPrice.setText(productManager.countPrice() + "VND");
+
                     }
+                    notifyDataSetChanged();
                 }
             });
 
@@ -140,16 +141,12 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
                 @Override
                 public void onClick(View v) {
                     productManager = ProductManager.getInstance(context);
-                    boolean isAdded = false;
                     boolean isUpdated = false;
-                    Product productDb = productManager.findProductById(product.getId());
-                    if(productDb == null){
-                        product.increaseQuantity();
-                        isAdded = productManager.addProduct(product);
-                    }else{
-                        productDb.increaseQuantity();
-                        isUpdated = productManager.updateQuantity(productDb);
-                    }
+                    product.increaseQuantity();
+                    isUpdated = productManager.updateQuantity(product);
+                    notifyDataSetChanged();
+                    cartActivity.txtTotalPrice.setText(productManager.countPrice() + "VND");
+
                 }
             });
 
@@ -158,33 +155,9 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
 
         }
             public void dialogClick(int position) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                alert.setTitle("Confirm");
-                alert.setMessage("Do you want to delete this product ?");
-                alert.setIcon(R.drawable.ic_baseline_delete_outline_24);
 
-
-                alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    boolean delete_pr = false;
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Product pr = cartLines.get(position);
-                        long id = pr.getId();
-                        cartLines.remove(position);
-                        delete_pr = productManager.delete(id);
-
-                        notifyDataSetChanged();
-                        Toast.makeText(context, "Delete Successfull", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                alert.show();
             }
+
 
         public class ThumbnailLoader extends AsyncTask<String, Void, Bitmap> {
             URL image_url;
