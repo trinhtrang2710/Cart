@@ -99,10 +99,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                     boolean isUpdated = false;
                     Product productDb = manager.findProductById(product.getId());
                     if(productDb == null){
-                        product.increaseQuantity();
                         isAdded = manager.addProduct(product);
                     }else{
-                        productDb.increaseQuantity();
                         isUpdated = manager.updateQuantity(productDb);
                     }
 

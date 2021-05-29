@@ -17,9 +17,8 @@ public class ProductManager  {
 
     private static final String INSERT_STMT =
             "INSERT INTO " + DbSchema.ProductTable.NAME + "(id, name, thumbnail, unit_price, quantity) VALUES (?, ?, ?, ?, ?)";
-    public static final  String UPDATE_PRODUCT = "UPDATE " + DbSchema.ProductTable.NAME +
-                                                "SET " + DbSchema.ProductTable.Cols.QUANTITY +
-                                                " = " + "WHERE " +  DbSchema.ProductTable.Cols.ID + " " ;
+    public static final  String SEARCH_PRODUCT = "SELECT * FROM " + DbSchema.ProductTable.NAME +
+                                                    " WHERE " + DbSchema.ProductTable.Cols.NAME + " LIKE '%?%' ";
 
     private DbHelper dbHelper;
     private SQLiteDatabase db;

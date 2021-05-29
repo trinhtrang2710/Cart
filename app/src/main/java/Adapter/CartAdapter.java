@@ -71,6 +71,11 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         return cartLines.size();
     }
 
+    public void filterList(ArrayList<Product> filteredList) {
+        cartLines = filteredList;
+        notifyDataSetChanged();
+    }
+
 
     public class CartHolder extends RecyclerView.ViewHolder {
         ImageView imgCart;
@@ -187,6 +192,8 @@ public class  CartAdapter extends RecyclerView.Adapter<CartAdapter.CartHolder> {
         }
 
     }
+
+   
 
 
 }
